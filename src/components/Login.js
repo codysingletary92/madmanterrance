@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-function Login() {
+function Login(props) {
 
 const [formData, setFormData] = useState({username: '', password:''})
+const [pwd, setPwd] = useState('')
 
 function handleChange(e) {
-    const thing = e.target.name
     setFormData({...formData, [e.target.name]: [e.target.value]})
+}
+
+function loginSubmit(){
+// This function should pass 'admin' or 'employee' to App.js
+    if (formData.username == 'admin' ){
+        props.loginSwitch(true,true)
+    }
+    else if (formData.username == 'lumper'){
+        props.loginSwitch(true,false)
+    }
+    
 }
 
   return (
@@ -20,7 +31,7 @@ function handleChange(e) {
                 <label>Password::</label>
                 <input name='password' value={formData.password} onChange={handleChange}/>
             </form>    
-            <button>Login</button>
+            <button name="LoginButton" onClick={loginSubmit}>Login</button>
       </div>
 
   )

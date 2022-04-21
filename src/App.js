@@ -21,14 +21,33 @@ function App() {
       {number: 'HNDC3234675', splits: 13, weight: '39lbs', },
     ]
   });
+  
+  const [loginState, setLoginState] = useState({isLoggedIn: false, isAdmin: false,})
+
+  function loginSwitch(login, rank){
+    console.log({isLoggedIn: login, isAdmin: rank,})
+    setLoginState({isLoggedIn: login, isAdmin: rank,})
+
+  }
+
+  function loginAuth () {
+    if (loginState.isAdmin){
+      return <AdminPortal />
+    }
+    else if (loginState.isLoggedIn && !loginState.isAdmin){
+      return <EmployeePortal />
+    }
+    else {
+      return null
+    }
+  }
  
 
   return (
     <div className="App" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignContent: 'center'}}>
       <Header />
-      <Login />
-      <EmployeePortal />
-      <AdminPortal />
+      {!loginState.isLoggedIn ? <Login loginSwitch={loginSwitch} /> : <></> }
+      {loginAuth()}
     </div>
   );
 }
