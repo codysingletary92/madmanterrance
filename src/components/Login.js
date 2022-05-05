@@ -13,10 +13,10 @@ function handleChange(e) {
 function loginSubmit(){
 // This function should pass 'admin' or 'employee' to App.js
     if (formData.username == 'admin' ){
-        props.loginSwitch(true,true)
+        props.loginSwitch('admin')
     }
     else if (formData.username == 'lumper'){
-        props.loginSwitch(true,false)
+        props.loginSwitch('lumper')
     }
     
 }
